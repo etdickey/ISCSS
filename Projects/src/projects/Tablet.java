@@ -74,12 +74,10 @@ public class Tablet extends JPanel implements KeyListener, Runnable
     //    if(System.nanoTime() > frameDelayTimer + 1000)
     //    {
      //       frameDelayTimer+=(System.nanoTime()-1000);
-            if(currentFrame < 15)
-            {
+            if(currentFrame < 15){
                 currentFrame++;
             }
-            else
-            {
+            else{
                 currentFrame = 0;
             }
     //    }
@@ -106,9 +104,8 @@ public class Tablet extends JPanel implements KeyListener, Runnable
             x = DrawIt.WIDTH/2;
             y = DrawIt.HEIGHT/2;
         }
-        //window.setColor( Color.WHITE );
+        
         window.drawImage(knightidle[currentFrame], x, y, null);
-        //      window.fillRect(x, y, 2, 2);
     }
 
     public void keyPressed(KeyEvent e)
@@ -168,17 +165,21 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         try{
             for(int i=0; i<16; i++)
             {
-                if(i<8){
-                    knightidle[i] = ImageIO.read(new File("projects.knightidle/idleL" + (i+1) + ".png"));out.println("first one");}
-                else{
-                    knightidle[i] = ImageIO.read(new File("projects.knightidle/idleR" + (i-7) + ".png"));out.println("first two");}
+                if(i<8)
+                    knightidle[i] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\knightidle\\idleL" + (i+1) + ".png"));
+                else
+                    knightidle[i] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\knightidle\\idleR" + (i-7) + ".png"));
             }
             for(int i=0; i<12; i++)
             {
-                if(i<6){
-                    knightmove[i] = ImageIO.read(new File("projects.knightmove/moveL" + (i+1) + ".png"));out.println("first three");}
-                else{
-                    knightmove[i] = ImageIO.read(new File("projects.knightmove/moveR" + (i-5) + ".png"));out.println("first four");}
+                if(i<6)
+                    knightmove[i] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\knightmove\\moveL" + (i+1) + ".png"));
+                else
+                    knightmove[i] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\knightmove\\moveR" + (i-5) + ".png"));
             }
         }catch(Exception e){out.println("Graphics image failed to be read by the ImageIO::  "+e);}
         //(BufferedImage)(ImageIO.read(GraphicsAssets.class.getResourceAsStream(loc)));
