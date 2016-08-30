@@ -3,6 +3,7 @@
 //Date -
 //Class -
 //Lab  -
+package projects;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
+import static java.lang.System.out;
 
 public class Tablet extends JPanel implements KeyListener, Runnable
 {
@@ -42,7 +44,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         //[3]=down arrow
         //[4]=space bar
         keys = new boolean[5];
-
+        
         setBackground(Color.BLACK);
 
         //x and y will keep track of where the pen is
@@ -157,10 +159,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         }
     }
 
-    public void keyTyped(KeyEvent e)
-    {
-
-    }
+    public void keyTyped(KeyEvent e){}
     static BufferedImage[] knightidle = new BufferedImage[16];
     static BufferedImage[] knightmove = new BufferedImage[12];
 
@@ -169,31 +168,21 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         try{
             for(int i=0; i<16; i++)
             {
-                if(i<8)
-                {
-                    knightidle[i] = ImageIO.read(new File("knightidle/idleL" + (i+1) + ".png"));
-                }
-                else
-                {
-                    knightidle[i] = ImageIO.read(new File("knightidle/idleR" + (i-7) + ".png"));
-                }
+                if(i<8){
+                    knightidle[i] = ImageIO.read(new File("projects.knightidle/idleL" + (i+1) + ".png"));out.println("first one");}
+                else{
+                    knightidle[i] = ImageIO.read(new File("projects.knightidle/idleR" + (i-7) + ".png"));out.println("first two");}
             }
             for(int i=0; i<12; i++)
             {
-                if(i<6)
-                {
-                    knightmove[i] = ImageIO.read(new File("knightmove/moveL" + (i+1) + ".png"));
-                }
-                else
-                {
-                    knightmove[i] = ImageIO.read(new File("knightmove/moveR" + (i-5) + ".png"));
-                }
+                if(i<6){
+                    knightmove[i] = ImageIO.read(new File("projects.knightmove/moveL" + (i+1) + ".png"));out.println("first three");}
+                else{
+                    knightmove[i] = ImageIO.read(new File("projects.knightmove/moveR" + (i-5) + ".png"));out.println("first four");}
             }
-        } catch(Exception e ){System.out.println("Graphics image failed to be read by the ImageIO::    ");}
+        }catch(Exception e){out.println("Graphics image failed to be read by the ImageIO::  "+e);}
         //(BufferedImage)(ImageIO.read(GraphicsAssets.class.getResourceAsStream(loc)));
-        
     }
-
     public void run()
     {
         initializeKnight();
@@ -205,7 +194,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
                 repaint();
             }
         }catch(Exception e)
-        {
+        {out.println("err with thread.sleep:: "+e);
         }
     }
 }
