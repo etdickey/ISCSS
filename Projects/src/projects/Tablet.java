@@ -129,7 +129,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
             window.drawImage(knightmove[left/12], x, y, null);//fix
         }
         else if(!leftFacing)
-            window.drawImage(knightmove[(right+36)/12], x, y, null);//fix
+            window.drawImage(knightmove[(right+71)/12], x, y, null);//fix
 //        else
 //            window.drawImage(knightidle[currentFrame/3], x, y, null);
 //        window.drawImage(knightidle[currentFrame], x, y, null);
