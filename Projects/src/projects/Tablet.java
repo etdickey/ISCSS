@@ -34,7 +34,8 @@ public class Tablet extends JPanel implements KeyListener, Runnable
     private int y;
     private int currentFrame;
     private long frameDelayTimer;
-
+    private int right=0,left=0,up=0,down=0;
+    private boolean leftFacing=false,idle=true;
     public Tablet(JFrame par)
     {
         //the keys array will store the key presses
@@ -71,30 +72,45 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         window.drawString("Use the arrow keys to draw.", 20,40);
         window.drawString("Use the space bar to clear the screen.", 20,60);
         window.drawString("" + frameDelayTimer, 20,80);
-    //    if(System.nanoTime() > frameDelayTimer + 1000)
-    //    {
-     //       frameDelayTimer+=(System.nanoTime()-1000);
-            if(currentFrame < 15){
-                currentFrame++;
-            }
-            else{
-                currentFrame = 0;
-            }
-    //    }
+        
+        if(currentFrame < 70){
+            currentFrame++;
+        }
+        else{
+            currentFrame = 0;
+        }
         if(keys[0] == true)   //left
         {
+            leftFacing=true;
+            if(left<72)//fix
+                left++;
+            else
+                left=0;
             x--;
         }
+        else
+            left=0;
         if(keys[1] == true)  //right
         {
+            leftFacing=false;
+            if(right<72)//fix
+                right++;
+            else
+                right=0;
             x++;
         }
+        else
+            right=0;
         if(keys[2] == true)  //up
         {
             y--;
+            idle=true;
         }
+        else
+            idle=false;
         if(keys[3] == true)  //down
         {
+            idle=true;
             y++;
         }
         if(keys[4] == true)  //space
@@ -104,8 +120,19 @@ public class Tablet extends JPanel implements KeyListener, Runnable
             x = DrawIt.WIDTH/2;
             y = DrawIt.HEIGHT/2;
         }
-        
-        window.drawImage(knightidle[currentFrame], x, y, null);
+        if(!keys[0]&&!keys[1]&&!keys[2]&&!keys[3])
+            idle=true;
+        if(idle){
+            window.drawImage(knightidle[currentFrame/10], x, y, null);
+        }
+        else if(leftFacing){
+            window.drawImage(knightmove[left/12], x, y, null);//fix
+        }
+        else if(!leftFacing)
+            window.drawImage(knightmove[(right+36)/12], x, y, null);//fix
+//        else
+//            window.drawImage(knightidle[currentFrame/3], x, y, null);
+//        window.drawImage(knightidle[currentFrame], x, y, null);
     }
 
     public void keyPressed(KeyEvent e)
