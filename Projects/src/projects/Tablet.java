@@ -184,9 +184,12 @@ public class Tablet extends JPanel implements KeyListener, Runnable
     }
 
     public void keyTyped(KeyEvent e){}
-    static BufferedImage[] knightidle = new BufferedImage[16];
-    static BufferedImage[] knightmove = new BufferedImage[12];
-
+    static BufferedImage[] knightidle = new BufferedImage[16],
+            knightmove = new BufferedImage[12],
+            gobbyidle = new BufferedImage[16],
+            gobbymove = new BufferedImage[12],
+            gobbyjump = new BufferedImage[10],
+            temp = new BufferedImage[2];
     private static void initializeKnight() 
     {
         try{
@@ -207,6 +210,51 @@ public class Tablet extends JPanel implements KeyListener, Runnable
                 else
                     knightmove[i] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
                             + "\\projects\\knightmove\\moveR" + (i-5) + ".png"));
+            }
+            //gobby idle array
+            temp[0] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_idleL_strip8.png"));
+            temp[1] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_idleR_strip8.png"));
+            int x=0,y=0,w=32,h=32;
+            for(int i=0;i<16;i++){
+                if(i==8)
+                    x=0;
+                if(i<8)
+                    gobbyidle[i] = temp[0].getSubimage(x, y, w, h);
+                else
+                    gobbyidle[i] = temp[1].getSubimage(x, y, w, h);
+                x+=w;
+            }
+            //gobby jump array
+            temp[0] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_jumpL_strip5.png"));
+            temp[1] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_jumpR_strip5.png"));
+            x=0;y=0;
+            for(int i=0;i<16;i++){
+                if(i==8)
+                    x=0;
+                if(i<8)
+                    gobbyjump[i] = temp[0].getSubimage(x, y, w, h);
+                else
+                    gobbyjump[i] = temp[1].getSubimage(x, y, w, h);
+                x+=w;
+            }
+            //gobby move array
+            temp[0] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_moveL_strip6.png"));
+            temp[1] = ImageIO.read(new File("C:\\Users\\Administrator\\Desktop\\School\\ISCSS\\ISCSS\\Projects\\src"
+                            + "\\projects\\gobby\\gobby_moveR_strip6.png"));
+            x=0;y=0;
+            for(int i=0;i<16;i++){
+                if(i==8)
+                    x=0;
+                if(i<8)
+                    gobbymove[i] = temp[0].getSubimage(x, y, w, h);
+                else
+                    gobbymove[i] = temp[1].getSubimage(x, y, w, h);
+                x+=w;
             }
         }catch(Exception e){out.println("Graphics image failed to be read by the ImageIO::  "+e);}
         //(BufferedImage)(ImageIO.read(GraphicsAssets.class.getResourceAsStream(loc)));
