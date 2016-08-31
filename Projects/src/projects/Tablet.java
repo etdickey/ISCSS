@@ -82,7 +82,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         if(keys[0] == true)   //left
         {
             leftFacing=true;
-            if(left<72)//fix
+            if(left<72)
                 left++;
             else
                 left=0;
@@ -93,7 +93,7 @@ public class Tablet extends JPanel implements KeyListener, Runnable
         if(keys[1] == true)  //right
         {
             leftFacing=false;
-            if(right<72)//fix
+            if(right<72)
                 right++;
             else
                 right=0;
@@ -126,10 +126,10 @@ public class Tablet extends JPanel implements KeyListener, Runnable
             window.drawImage(knightidle[currentFrame/10], x, y, null);
         }
         else if(leftFacing){
-            window.drawImage(knightmove[left/12], x, y, null);//fix
+            window.drawImage(knightmove[left/12], x, y, null);
         }
         else if(!leftFacing)
-            window.drawImage(knightmove[(right+71)/12], x, y, null);//fix
+            window.drawImage(knightmove[(right+71)/12], x, y, null);
 //        else
 //            window.drawImage(knightidle[currentFrame/3], x, y, null);
 //        window.drawImage(knightidle[currentFrame], x, y, null);
